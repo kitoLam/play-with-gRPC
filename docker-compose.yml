@@ -1,0 +1,55 @@
+
+services:
+  # 1. RabbitMQ Service (Message Broker)
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: demo-rabbitmq
+    ports:
+      - "5672:5672"     # Cổng giao tiếp AMQP mặc định
+      - "15672:15672"   # Cổng giao diện quản trị UI
+    networks:
+      - micro-network
+    restart: always
+
+  # -------------------------------------------------------------
+  # Dưới đây là cấu hình mẫu (bị comment lại) để bạn tham khảo 
+  # cách kết nối NestJS và Spring Boot khi deploy bằng Docker.
+  # Trong lúc dev, bạn chỉ cần chạy rabbitmq ở trên và run code local.
+  # -------------------------------------------------------------
+
+  # 2. NestJS (Đóng vai trò: gRPC Server & RabbitMQ Consumer)
+  nestjs-service:
+    build: 
+      context: ./nest-service-test-1
+    container_name: nestjs-service
+    ports:
+      - "3000:3000"     # Cổng HTTP (nếu có Web API)
+      - "50051:50051"   # Cổng gRPC Server mở để Spring gọi vào
+    environment:
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+    depends_on:
+      - rabbitmq
+    networks:
+      - micro-network
+
+  # 3. Spring Boot (Đóng vai trò: gRPC Client & RabbitMQ Publisher)
+  spring-service:
+    build: 
+      context: ./java-service-demo
+    container_name: spring-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - GRPC_CLIENT_NESTJS_ADDRESS=static://nestjs-service:50051
+    depends_on:
+      - rabbitmq
+      - nestjs-service
+    networks:
+      - micro-network
+  #     - micro-network
+
+networks:
+  micro-network:
+    driver: bridge

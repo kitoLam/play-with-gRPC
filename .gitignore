@@ -1,0 +1,67 @@
+# ==========================================
+# Common / General
+# ==========================================
+.idea/
+.vscode/
+*.iml
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+
+# ==========================================
+# Node.js / NestJS (nest-service-test-1)
+# ==========================================
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+lerna-debug.log
+.pnpm-debug.log
+coverage/
+.nyc_output/
+.cache/
+.parcel-cache/
+
+# ==========================================
+# Java / Spring Boot (java-service-demo)
+# ==========================================
+target/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle (trong trường hợp tương lai có dùng)
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ==========================================
+# OS Generated Files
+# ==========================================
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db

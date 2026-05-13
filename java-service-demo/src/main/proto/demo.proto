@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.learnmicroservice.grpc";
+
+package demo;
+
+service DemoService {
+    rpc GetGreeting (GreetingRequest) returns (GreetingResponse) {}
+}
+
+message GreetingRequest {
+    string name = 1;
+}
+
+message GreetingResponse {
+    string message = 1;
+}

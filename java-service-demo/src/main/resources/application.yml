@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:admin}
+    password: ${SPRING_RABBITMQ_PASSWORD:secret}
+
+grpc:
+  client:
+    demoService:
+      address: ${GRPC_CLIENT_NESTJS_ADDRESS:'static://localhost:50051'}
+      negotiation-type: plaintext
