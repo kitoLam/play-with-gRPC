@@ -9,6 +9,8 @@ spring:
     password: ${SPRING_RABBITMQ_PASSWORD:secret}
 
 grpc:
+  server:
+    port: 9090
   client:
     demoService:
       address: ${GRPC_CLIENT_NESTJS_ADDRESS:'static://localhost:50051'}

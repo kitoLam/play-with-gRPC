@@ -16,3 +16,15 @@ message GreetingRequest {
 message GreetingResponse {
     string message = 1;
 }
+
+service SpringService {
+    rpc FetchDataFromJava (JavaDataRequest) returns (JavaDataResponse) {}
+}
+
+message JavaDataRequest {
+    string id = 1;
+}
+
+message JavaDataResponse {
+    string data = 1;
+}

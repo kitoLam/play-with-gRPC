@@ -10,4 +10,9 @@ public class RabbitMQConfig {
     public Queue demoQueue() {
         return new Queue("demo_queue", true);
     }
+
+    @Bean
+    public Queue javaQueue() {
+        return new Queue("java_queue", true);
+    }
 }

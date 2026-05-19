@@ -26,7 +26,7 @@ services:
       - "3000:3000"     # Cổng HTTP (nếu có Web API)
       - "50051:50051"   # Cổng gRPC Server mở để Spring gọi vào
     environment:
-      - RABBITMQ_URL=amqp://rabbitmq:5672
+      - RABBITMQ_URL=amqp://rabbitmq:5672?heartbeat=0
     depends_on:
       - rabbitmq
     networks:
@@ -42,6 +42,8 @@ services:
     environment:
       - SPRING_RABBITMQ_HOST=rabbitmq
       - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
       - GRPC_CLIENT_NESTJS_ADDRESS=static://nestjs-service:50051
     depends_on:
       - rabbitmq

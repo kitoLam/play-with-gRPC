@@ -32,6 +32,11 @@
             <artifactId>grpc-client-spring-boot-starter</artifactId>
             <version>2.15.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+            <version>2.15.0.RELEASE</version>
+        </dependency>
         <!-- For compiling Java 17 compatibility with protobuf if needed -->
         <dependency>
             <groupId>javax.annotation</groupId>
