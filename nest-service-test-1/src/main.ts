@@ -6,25 +6,12 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // 1. Cài đặt gRPC Microservice
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
-      package: 'demo',
-      protoPath: join(__dirname, 'demo.proto'),
+      package: 'disnote.user.v1',
+      protoPath: join(__dirname, '../src/proto/disnote/user/v1/user.proto'),
       url: '0.0.0.0:50051',
-    },
-  });
-
-  // 2. Cài đặt RabbitMQ Microservice
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.RMQ,
-    options: {
-      urls: [process.env.RABBITMQ_URL || 'amqp://admin:secret@localhost:5672'],
-      queue: 'demo_queue',
-      queueOptions: {
-        durable: true,
-      },
     },
   });
 

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package disnote.user.v1;
+
+option java_package         = "com.disnote.grpc.user.v1";
+option java_outer_classname = "UserProto";
+option java_multiple_files  = true;
+
+service UserService {
+  rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse);
+}
+
+message GetUserProfileRequest {
+  string user_id = 1;
+}
+
+message GetUserProfileResponse {
+  string full_name = 1;
+}

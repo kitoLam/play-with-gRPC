@@ -1,0 +1,10 @@
+version: v2
+
+inputs:
+  - module: buf.build/disnote/protos:main
+
+plugins:
+  - remote: buf.build/protocolbuffers/java:v25.3
+    out: src/main/java
+  - remote: buf.build/grpc/java:v1.62.2
+    out: src/main/java

@@ -1,0 +1,12 @@
+version: v2
+
+inputs:
+  - module: buf.build/disnote/protos:main
+
+plugins:
+  - local: node_modules\\.bin\\protoc-gen-ts_proto.cmd
+    out: src/generated
+    opt:
+      - nestJs=true
+      - outputServices=grpc-js
+      - esModuleInterop=true
