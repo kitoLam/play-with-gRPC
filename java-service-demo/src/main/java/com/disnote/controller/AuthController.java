@@ -1,10 +1,10 @@
 package com.disnote.controller;
 
 import com.disnote.grpc.user.v1.GetUserProfileRequest;
+import com.disnote.grpc.user.v1.GetUserProfileResponse;
 import com.disnote.grpc.user.v1.UserServiceGrpc;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +19,11 @@ public class AuthController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<String> getProfile(@PathVariable String userId) {
-        var request = GetUserProfileRequest.newBuilder()
+        GetUserProfileRequest request = GetUserProfileRequest.newBuilder()
                 .setUserId(userId)
                 .build();
 
-        var response = userStub.getUserProfile(request);
+        GetUserProfileResponse response = userStub.getUserProfile(request);
 
         return ResponseEntity.ok(response.getFullName());
     }
