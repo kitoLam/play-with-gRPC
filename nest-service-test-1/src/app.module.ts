@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { USER_GRPC_CLIENT } from './constants/gRPC';
 
 @Module({
   imports: [
@@ -28,6 +29,17 @@ import { join } from 'path';
     //     },
     //   },
     // ]),
+    ClientsModule.register([
+      {
+        name: USER_GRPC_CLIENT,
+        transport: Transport.GRPC,
+        options: {
+          url: 'localhost:9090',
+          package: 'disnote.user.v1',
+          protoPath: join(__dirname, '../src/proto/disnote/user/v1/user.proto'),
+        },
+      },
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService],
